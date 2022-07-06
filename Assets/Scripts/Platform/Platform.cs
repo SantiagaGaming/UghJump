@@ -4,14 +4,18 @@ using UnityEngine;
 
 public class Platform : MonoBehaviour
 {
-    protected void OnTriggerEnter(Collider other)
+    protected virtual void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent(out Legs legs))
-            ColliderChanger();
+            ColliderChanger(false);
+        if (other.TryGetComponent(out Head head))
+            ColliderChanger(true);
+        if (other.TryGetComponent(out EndCollider end))
+            gameObject.SetActive(false);
     }
-    protected virtual void ColliderChanger()
+    protected virtual void ColliderChanger(bool value)
     {
-        GetComponent<Collider>().isTrigger = false;
+        GetComponent<Collider>().isTrigger = value;
     }
 
 }

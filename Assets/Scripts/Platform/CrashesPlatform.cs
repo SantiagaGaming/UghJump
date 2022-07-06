@@ -6,11 +6,12 @@ public class CrashesPlatform : Platform
 {
     [SerializeField] private GameObject[] _platforms;
 
-    protected override void ColliderChanger()
+    protected override void ColliderChanger(bool value)
     {
         foreach (var item in _platforms)
         {
             Rigidbody rb = item.GetComponent<Rigidbody>();
+            SoundPlayer.Instance.PlayPlatformCrashesSound();
             rb.isKinematic = false;
             ForceAdded(rb);
         }
@@ -36,6 +37,7 @@ public class CrashesPlatform : Platform
 
         }
         rb.AddForce(forceVector * 10, ForceMode.Impulse);
+        GetComponent<Collider>().enabled = false;
 
     }
 }

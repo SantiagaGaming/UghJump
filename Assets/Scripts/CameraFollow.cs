@@ -1,13 +1,10 @@
 using UnityEngine;
-
-using UnityEngine;
 using System.Collections;
 
 public class CameraFollow : MonoBehaviour
 {
-
    [SerializeField] private GameObject _player;
-    private float _cameraMoveSpeed = 3;
+    private float _cameraMoveSpeed = 2;
 
     void FixedUpdate()
     {

@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerJumper : MonoBehaviour
 {
+    public UnityAction JumpEvent;
     [SerializeField] private float _jumpForce;
     private Rigidbody _rb;
     private void Start()
@@ -16,6 +19,7 @@ public class PlayerJumper : MonoBehaviour
         {
             _rb.velocity = Vector3.zero;
             _rb.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
+            JumpEvent?.Invoke();
         }
      
     }
